@@ -19,10 +19,10 @@ def main():
         with_saving_csv=True,
         additional_settings={
             "start_page": 1,
-            "end_page": 2,
+            "end_page": 4,
             "object_type": "secondary"
         })
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data).iloc[:50, :]
 
     df.to_csv(csv_path,
               encoding='utf-8',
