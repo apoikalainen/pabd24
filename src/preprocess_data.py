@@ -11,9 +11,9 @@ logging.basicConfig(
     format='%(asctime)s %(message)s')
 
 
-IN_FILES = ['data/raw/cian_flat_sale_1_50_moskva_26_Apr_2024_14_08_32_338904.csv',
-            'data/raw/cian_flat_sale_1_50_moskva_26_Apr_2024_14_15_43_988750.csv',
-            'data/raw/cian_flat_sale_1_50_moskva_26_Apr_2024_14_22_17_675082.csv']
+IN_FILES = ['data/raw/1_2024-05-14_20-37.csv',
+            'data/raw/2_2024-05-14_20-49.csv',
+            'data/raw/3_2024-05-14_20-50.csv']
 
 OUT_TRAIN = 'data/proc/train.csv'
 OUT_VAL = 'data/proc/val.csv'
@@ -22,12 +22,11 @@ TRAIN_SIZE = 0.9
 
 
 def main(args):
-    main_dataframe = pd.read_csv(args.input[0], delimiter=';')
+    main_dataframe = pd.read_csv(args.input[0], delimiter=',')
     for i in range(1, len(args.input)):
-        data = pd.read_csv(args.input[i], delimiter=';')
+        data = pd.read_csv(args.input[i], delimiter=',')
         df = pd.DataFrame(data)
         main_dataframe = pd.concat([main_dataframe, df], axis=0)
-
     main_dataframe['url_id'] = main_dataframe['url'].map(lambda x: x.split('/')[-2])
     new_dataframe = main_dataframe[['url_id', 'total_meters', 'price']].set_index('url_id')
 
