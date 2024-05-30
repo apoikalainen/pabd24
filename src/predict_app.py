@@ -17,7 +17,7 @@ config = dotenv_values(".env")
 auth = HTTPTokenAuth(scheme='Bearer')
 
 tokens = {
-    config['APP_TOKEN']: "alexp",
+    config['APP_TOKEN']: "user1",
 }
 
 model = load(MODEL_SAVE_PATH)
@@ -67,8 +67,17 @@ def home():
 @auth.login_required
 def predict_web_serve():
     """Dummy service"""
-    in_data = request.get_json()
-    price = predict(in_data)
+    # in_data = request.get_json()['area']
+    # price = predict_io_bounded(in_data)
+    
+    # in_data = request.get_json()['area']
+    # price = predict_cpu_bounded(in_data)
+    
+    in_data = request.get_json()['area']
+    price = predict_cpu_multithread(in_data)
+    
+    # in_data = request.get_json()
+    # price = predict(in_data)
     return {'price': price}
 
 
