@@ -47,24 +47,24 @@ Development сервер предназначен только для испол
 Gunicorn обеспечивает масштабируемость приложения, позволяя запускать несколько процессов, чтобы обрабатывать одновременно большое количество запросов.
 
 
-1) При запуске predict_cpu_multithread на dev-сервере flask с n=20_000_000 получен [результат](log/predict_cpu_multithread_dev_20000000.txt). 
+1) При запуске predict_cpu_multithread на dev-сервере flask с n=20_000_000 получен [результат](./log/predict_cpu_multithread_dev_20000000.txt). 
 10 запросов обрабатываются одновременно, в среднем за 4 секунды. 
 На продакшене это неприемлимо из-за большой нагрузки  на сервер, непредсказуемой стабильности и производительности с силу многопоточности.
 
-2) При запуске predict_cpu_multithread на prod-сервере gunicorn с n=20_000_000 получен [результат](log/predict_cpu_multithread_prod_20000000.txt). 
+2) При запуске predict_cpu_multithread на prod-сервере gunicorn с n=20_000_000 получен [результат](./log/predict_cpu_multithread_prod_20000000.txt). 
 10 запросов обрабатываются последовательно, в среднем за 5 секунд. 
 На продакшене это предпочтительно из-за более стабильной, надежной и устойчивой работы сервера в условиях последовательной обработки запросов.
 
-3) При запуске predict_cpu_bounded на prod-сервере gunicorn с n=5_000_000 получен [результат](log/predict_cpu_bounded_prod.txt). 
+3) При запуске predict_cpu_bounded на prod-сервере gunicorn с n=5_000_000 получен [результат](./log/predict_cpu_bounded_prod.txt). 
 10 запросов обрабатываются последовательно, в среднем за 17 секунд. 
 
-4) При запуске predict_cpu_bounded на dev-сервере gunicorn с n=5_000_000 получен [результат](log/predict_cpu_bounded_dev.txt). 
+4) При запуске predict_cpu_bounded на dev-сервере gunicorn с n=5_000_000 получен [результат](./log/predict_cpu_bounded_dev.txt). 
 10 запросов обрабатываются последовательно, в среднем за 25 секунд. 
 
-5) При запуске predict_cpu_bounded на dev-сервере получен [результат](log/predict_io_bounded_dev.txt). 
+5) При запуске predict_cpu_bounded на dev-сервере получен [результат](./log/predict_io_bounded_dev.txt). 
 10 запросов обрабатываются вв среднем за 11 секунд.
 
-6) При запуске predict_cpu_bounded на prod-сервере получен [результат](log/predict_io_bounded_prod.txt).
+6) При запуске predict_cpu_bounded на prod-сервере получен [результат](./log/predict_io_bounded_prod.txt).
 10 запросов обрабатываются вв среднем за 55 секунд.
 
 Критическое значение n, при котором падает сервер, n = 350_000_000. При этом dev-сервер flask отключается, а prod-сервер не отключается. 
