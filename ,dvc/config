@@ -1,6 +1,0 @@
-[core]
-    remote = pabd_cloudru
-['remote "pabd_cloudru"']
-    url = s3://pabd24/
-    endpointurl = https://s3.cloud.ru
-    profile = pabd_cloudru

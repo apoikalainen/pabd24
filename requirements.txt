@@ -11,5 +11,4 @@ PyGithub
 flask_httpauth
 requests
 joblib
-puthon-dotenv
 dvc[s3]

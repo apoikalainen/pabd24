@@ -6,6 +6,9 @@ from flask_cors import CORS
 from joblib import load
 from flask_httpauth import HTTPTokenAuth
 from flask import send_from_directory
+
+import sys 
+sys.path.append('/home/user1/pabd24/src') 
 from utils import predict_io_bounded, predict_cpu_bounded, predict_cpu_multithread
 
 MODEL_SAVE_PATH = 'models/linear_regression_v01.joblib'
