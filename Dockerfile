@@ -1,6 +1,13 @@
-FROM python:3.9
+FROM python:3.10
 WORKDIR /app
-COPY . .
-RUN pip3 install -r requirements.txt
-CMD ["python3", "src/predict_app.py"]
-EXPOSE 5000
+
+COPY src/predict_app.py ./src/predict_app.py
+COPY models/xgb_v2.joblib ./models/xgb_v2.joblib
+COPY req_docker.txt ./
+COPY .env ./
+
+RUN python3 -m pip install --upgrade pip
+RUN pip install -r req_docker.txt
+
+CMD ["gunicorn", "-b", "0.0.0.0", "src.predict_app:app", "--capture-output"]
+EXPOSE 8000

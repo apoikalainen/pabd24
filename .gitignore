@@ -3,3 +3,4 @@ venv
 /.env
 /.env.prod
 *.joblib
+catboost_info/

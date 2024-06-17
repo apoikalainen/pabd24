@@ -1,17 +1,14 @@
 """House price prediction service"""
 import os
+
 from dotenv import dotenv_values
-from flask import Flask, request, url_for
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS
-from joblib import load
 from flask_httpauth import HTTPTokenAuth
-from flask import send_from_directory
+from joblib import load
+import pandas as pd
 
-import sys 
-sys.path.append('/home/user1/pabd24/src') 
-from utils import predict_io_bounded, predict_cpu_bounded, predict_cpu_multithread
-
-MODEL_SAVE_PATH = 'models/linear_regression_v01.joblib'
+MODEL_SAVE_PATH = 'models/xgb_v2.joblib'
 
 app = Flask(__name__)
 CORS(app)
@@ -39,9 +36,9 @@ def predict(in_data: dict) -> int:
     :return: House price, RUB.
     :rtype: int
     """
-    area = float(in_data['area'])
-    price = model.predict([[area]])
-    return int(price)
+    col = ['floor', 'floors_count', 'rooms_count', 'total_meters']
+    price = model.predict(pd.DataFrame(in_data, index=[0])[col])
+    return int(price.squeeze())
 
 
 
@@ -71,16 +68,9 @@ def home():
 def predict_web_serve():
     """Dummy service"""
     # in_data = request.get_json()['area']
-    # price = predict_io_bounded(in_data)
-    
-    # in_data = request.get_json()['area']
-    # price = predict_cpu_bounded(in_data)
-    
-    in_data = request.get_json()['area']
-    price = predict_cpu_multithread(in_data)
-    
-    # in_data = request.get_json()
-    # price = predict(in_data)
+    # price = predict_cpu_multithread(in_data)
+    in_data = request.get_json()
+    price = predict(in_data)
     return {'price': price}
 
 
