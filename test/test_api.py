@@ -3,7 +3,7 @@ import requests
 from dotenv import dotenv_values
 
 config = dotenv_values(".env")
-ENDPOINT = 'http://176.123.163.78:5000'
+ENDPOINT = 'http://176.123.163.78:8000'
 HEADERS = {"Authorization": f"Bearer {config['APP_TOKEN']}"}
 
 
