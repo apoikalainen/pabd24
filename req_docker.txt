@@ -1,0 +1,8 @@
+flask
+flask-cors
+pandas
+python-dotenv
+flask_httpauth
+gunicorn
+joblib
+xgboost

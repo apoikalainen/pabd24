@@ -1,14 +1,14 @@
 # external requirements
+numpy
 flask
 flask-cors
 cianparser
 scikit-learn
 pandas
-numpy
 boto3
 python-dotenv
-PyGithub
 flask_httpauth
-requests
-joblib
+gunicorn
 dvc[s3]
+xgboost
+joblib
