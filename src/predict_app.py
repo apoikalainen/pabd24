@@ -8,7 +8,7 @@ from flask_httpauth import HTTPTokenAuth
 from joblib import load
 import pandas as pd
 
-MODEL_SAVE_PATH = 'models/xgb_v2.joblib'
+MODEL_SAVE_PATH = 'models/catboost_v1.joblib'
 
 app = Flask(__name__)
 CORS(app)
@@ -36,7 +36,7 @@ def predict(in_data: dict) -> int:
     :return: House price, RUB.
     :rtype: int
     """
-    col = ['floor', 'floors_count', 'rooms_count', 'total_meters']
+    col = ['author_type', 'floor', 'floors_count', 'rooms_count', 'total_meters', 'underground']
     price = model.predict(pd.DataFrame(in_data, index=[0])[col])
     return int(price.squeeze())
 

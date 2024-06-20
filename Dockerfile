@@ -2,7 +2,7 @@ FROM python:3.10
 WORKDIR /app
 
 COPY src/predict_app.py ./src/predict_app.py
-COPY models/xgb_v2.joblib ./models/xgb_v2.joblib
+COPY models/catboost_v1.joblib ./models/catboost_v1.joblib
 COPY req_docker.txt ./
 COPY .env ./
 
