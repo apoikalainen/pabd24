@@ -36,7 +36,7 @@ def predict(in_data: dict) -> int:
     :return: House price, RUB.
     :rtype: int
     """
-    col = ['floor', 'floors_count', 'rooms_count', 'total_meters']
+    col = ['author_type', 'floor', 'floors_count', 'rooms_count', 'total_meters', 'underground']
     price = model.predict(pd.DataFrame(in_data, index=[0])[col])
     return int(price.squeeze())
 
