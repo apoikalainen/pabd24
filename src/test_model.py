@@ -4,7 +4,7 @@ import pandas as pd
 from joblib import load
 from sklearn.metrics import mean_absolute_error
 
-MODEL_SAVE_PATH = 'models/xgb_v2.joblib'
+MODEL_SAVE_PATH = 'models/catboost_v1.joblib'
 TEST_DATA = 'data/proc/test.csv'
 
 logger = logging.getLogger(__name__)
@@ -16,12 +16,7 @@ logging.basicConfig(
 
 
 def main(args):
-    col = [
-    'floor',
-    'floors_count', 
-    'rooms_count', 
-    'total_meters', 
-    ]
+    col = ['author_type', 'floor', 'floors_count', 'rooms_count', 'total_meters', 'underground']
     
     df_test = pd.read_csv(TEST_DATA)
     x_test = df_test[col]

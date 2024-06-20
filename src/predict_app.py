@@ -8,7 +8,7 @@ from flask_httpauth import HTTPTokenAuth
 from joblib import load
 import pandas as pd
 
-MODEL_SAVE_PATH = 'models/xgb_v2.joblib'
+MODEL_SAVE_PATH = 'models/catboost_v1.joblib'
 
 app = Flask(__name__)
 CORS(app)

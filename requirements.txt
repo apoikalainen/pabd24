@@ -10,5 +10,5 @@ python-dotenv
 flask_httpauth
 gunicorn
 dvc[s3]
-xgboost
+catboost
 joblib
